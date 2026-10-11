@@ -28,12 +28,14 @@
             background-color: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 16px;
         }
 
         /* HEADER & NAVBAR */
@@ -50,17 +52,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            min-height: 70px;
+            padding: 10px 0;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 800;
             color: var(--text-light);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            z-index: 102;
         }
 
         .logo span {
@@ -87,7 +91,8 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            z-index: 102;
         }
 
         .lang-btn {
@@ -113,38 +118,73 @@
             text-decoration: none;
             font-weight: 600;
             transition: background 0.3s;
+            white-space: nowrap;
         }
 
         .btn-call:hover {
             background-color: var(--accent-hover);
         }
 
+        /* HAMBURGER MENU */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 102;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-light);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8.5px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8.5px) rotate(-45deg);
+        }
+
         /* HERO SECTION */
         .hero {
-            padding: 80px 0 60px;
+            padding: 60px 0 40px;
             text-align: center;
             background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
             border-bottom: 1px solid var(--border-color);
         }
 
         .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
+            font-size: clamp(26px, 5vw, 42px);
+            margin-bottom: 16px;
             color: #ffffff;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 18px;
+            font-size: clamp(14px, 3vw, 18px);
             color: var(--text-muted);
             max-width: 800px;
-            margin: 0 auto 40px;
+            margin: 0 auto 30px;
         }
 
         .badges-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            gap: 16px;
+            margin-top: 20px;
         }
 
         .badge-card {
@@ -171,47 +211,54 @@
             margin: 0;
         }
 
-        /* PRICES & CATALOG SECTION */
+        /* SECTIONS GENERAL */
         .section {
-            padding: 70px 0;
+            padding: 50px 0;
             border-bottom: 1px solid var(--border-color);
         }
 
         .section-title {
-            font-size: 32px;
-            margin-bottom: 10px;
+            font-size: clamp(22px, 4vw, 32px);
+            margin-bottom: 8px;
             text-align: center;
         }
 
         .section-subtitle {
             text-align: center;
             color: var(--text-muted);
-            margin-bottom: 40px;
+            font-size: clamp(13px, 2.5vw, 16px);
+            margin-bottom: 30px;
         }
 
+        /* TABLE SECTION */
         .table-container {
+            width: 100%;
             overflow-x: auto;
             background: var(--bg-card);
             border-radius: 12px;
             border: 1px solid var(--border-color);
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
             width: 100%;
+            min-width: 650px;
             border-collapse: collapse;
             text-align: left;
         }
 
         th, td {
-            padding: 16px 20px;
+            padding: 14px 16px;
             border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
         }
 
         th {
             background-color: rgba(255, 255, 255, 0.03);
             color: var(--text-muted);
-            font-size: 14px;
             text-transform: uppercase;
+            font-size: 12px;
+            white-space: nowrap;
         }
 
         tr:last-child td {
@@ -225,6 +272,7 @@
             border-radius: 4px;
             font-size: 12px;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .btn-table-call {
@@ -236,6 +284,8 @@
             border-radius: 6px;
             display: inline-block;
             transition: all 0.3s;
+            white-space: nowrap;
+            font-size: 13px;
         }
 
         .btn-table-call:hover {
@@ -247,32 +297,27 @@
             margin-top: 20px;
             background: rgba(249, 115, 22, 0.1);
             border: 1px dashed var(--accent);
-            padding: 15px;
+            padding: 14px;
             border-radius: 8px;
             color: #fdba74;
-            font-size: 14px;
+            font-size: 13px;
             text-align: center;
+            line-height: 1.5;
         }
 
         /* CALCULATOR SECTION */
         .calc-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 24px;
             background: var(--bg-card);
-            padding: 30px;
+            padding: 24px;
             border-radius: 12px;
             border: 1px solid var(--border-color);
         }
 
-        @media (max-width: 768px) {
-            .calc-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
@@ -289,7 +334,7 @@
             border: 1px solid var(--border-color);
             border-radius: 6px;
             color: var(--text-light);
-            font-size: 16px;
+            font-size: 15px;
             outline: none;
         }
 
@@ -299,7 +344,7 @@
 
         .calc-result {
             background: var(--bg-dark);
-            padding: 25px;
+            padding: 20px;
             border-radius: 8px;
             border: 1px solid var(--border-color);
             display: flex;
@@ -317,59 +362,59 @@
         }
 
         .result-item h2 {
-            font-size: 32px;
+            font-size: clamp(24px, 4vw, 32px);
             color: var(--accent);
         }
 
         /* ADVANTAGES SECTION */
         .adv-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
         .adv-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 30px;
+            padding: 24px;
             border-radius: 12px;
         }
 
         .adv-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 18px;
+            margin-bottom: 8px;
             color: var(--accent);
+        }
+
+        .adv-card p {
+            font-size: 14px;
+            color: var(--text-muted);
         }
 
         /* CONTACTS SECTION */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+            gap: 24px;
         }
 
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
         .contact-item h4 {
             color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 5px;
+            font-size: 13px;
+            margin-bottom: 4px;
         }
 
         .contact-item p, .contact-item a {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--text-light);
             text-decoration: none;
+            word-break: break-word;
         }
 
         .contact-item a:hover {
@@ -380,20 +425,71 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            min-height: 250px;
+            min-height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-muted);
+            padding: 16px;
+            text-align: center;
         }
 
         /* FOOTER */
         footer {
-            padding: 30px 0;
+            padding: 24px 0;
             text-align: center;
             color: var(--text-muted);
-            font-size: 14px;
+            font-size: 13px;
             border-top: 1px solid var(--border-color);
+        }
+
+        /* MOBILE MEDIA QUERIES */
+        @media (max-width: 868px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--bg-card);
+                flex-direction: column;
+                padding: 90px 24px 30px;
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--border-color);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+                z-index: 101;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .calc-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-call-desktop {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .badges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .badge-card {
+                padding: 16px;
+            }
+
+            .calc-grid {
+                padding: 16px;
+            }
         }
     </style>
 </head>
@@ -404,15 +500,22 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">Metal <span>Holding</span></a>
-                <ul class="nav-links">
-                    <li><a href="#prices" id="nav-prices">Нархлар</a></li>
-                    <li><a href="#calc" id="nav-calc">Калькулятор</a></li>
-                    <li><a href="#advantages" id="nav-adv">Афзалликлар</a></li>
-                    <li><a href="#contacts" id="nav-contacts">Контактлар</a></li>
+                
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#prices" id="nav-prices" onclick="closeMenu()">Нархлар</a></li>
+                    <li><a href="#calc" id="nav-calc" onclick="closeMenu()">Калькулятор</a></li>
+                    <li><a href="#advantages" id="nav-adv" onclick="closeMenu()">Афзалликлар</a></li>
+                    <li><a href="#contacts" id="nav-contacts" onclick="closeMenu()">Контактлар</a></li>
                 </ul>
+
                 <div class="nav-right">
                     <button class="lang-btn" id="lang-btn" onclick="toggleLanguage()">РУС</button>
-                    <a href="tel:+998712000000" class="btn-call" id="btn-call-nav">Боғланиш</a>
+                    <a href="tel:+998712000000" class="btn-call btn-call-desktop" id="btn-call-nav">Боғланиш</a>
+                    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </nav>
         </div>
@@ -428,17 +531,17 @@
                 <div class="badge-card">
                     <div class="icon">🏢</div>
                     <h3 id="b1-title">ТОП-1700</h3>
-                    <p id="b1-desc">Mamlakatning yirik kompaniyalari ro'yxatida</p>
+                    <p id="b1-desc">Мамлакатнинг йирик компаниялари рўйхатида</p>
                 </div>
                 <div class="badge-card">
                     <div class="icon">💰</div>
                     <h3 id="b2-title">Йирик солиқ тўловчи</h3>
-                    <p id="b2-desc">O'zbekiston iqtisodiyotiga munosib hissa</p>
+                    <p id="b2-desc">Ўзбекистон иқтисодиётига муносиб ҳисса</p>
                 </div>
                 <div class="badge-card">
                     <div class="icon">📦</div>
                     <h3 id="b3-title">Хусусий омбор</h3>
-                    <p id="b3-desc">Mahsulotlar doimo zaxirada mavjud</p>
+                    <p id="b3-desc">Маҳсулотлар доимо заҳирада мавжуд</p>
                 </div>
             </div>
         </div>
@@ -604,7 +707,22 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // Language Data Storage
+        // MOBILE MENU LOGIC
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const hamburger = document.getElementById('hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const hamburger = document.getElementById('hamburger');
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        // LANGUAGE DATA & SWITCHER LOGIC
         let currentLang = 'uz';
 
         const translations = {
@@ -710,7 +828,6 @@
             currentLang = currentLang === 'uz' ? 'ru' : 'uz';
             const lang = translations[currentLang];
 
-            // Update Text
             document.getElementById('lang-btn').innerText = lang.langBtn;
             document.getElementById('nav-prices').innerText = lang.navPrices;
             document.getElementById('nav-calc').innerText = lang.navCalc;
@@ -769,7 +886,7 @@
             document.getElementById('map-placeholder').innerText = lang.mapPlaceholder;
         }
 
-        // METAL CALCULATOR LOGIC
+        // CALCULATOR LOGIC
         function calculateMetal() {
             const pricePerTon = parseFloat(document.getElementById('metal-type').value);
             const weight = parseFloat(document.getElementById('metal-weight').value) || 0;
